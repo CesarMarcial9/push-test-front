@@ -8,6 +8,7 @@ const Homepage: NextPage = () => {
   OneSignalReact.init({
     appId: 'c89716aa-7ed9-4402-83ba-7ff80bca219a',
     serviceWorkerPath: '/OneSignalSDKWorker.js',
+    autoResubscribe: true,
   }).then(() => {
     setInitialized(true);
     OneSignalReact.showSlidedownPrompt().then(() => {
@@ -15,12 +16,15 @@ const Homepage: NextPage = () => {
     });
   });
 
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-white bg-zinc-900">
+    <div className="flex flex-col items-center justify-center min-h-screen gap-3 p-4 text-center text-white bg-zinc-900">
       <h1 className="text-5xl font-medium">Suma push notifs testing</h1>
 
-      {initialized ? <p>Initialized.</p> : <p>Not initialized yet.</p>}
+      {initialized ? (
+        <p>Initialized. You are subscribed and can receive notifications.</p>
+      ) : (
+        <p>Not initialized yet. You can't receive notifications.`</p>
+      )}
     </div>
   );
 };
