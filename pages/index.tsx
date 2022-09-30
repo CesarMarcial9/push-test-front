@@ -7,7 +7,7 @@ const Homepage: NextPage = () => {
   const [initialized, setInitialized] = useState(false);
   OneSignalReact.init({
     appId: 'c89716aa-7ed9-4402-83ba-7ff80bca219a',
-    serviceWorkerPath: path.join(process.cwd(), 'OneSignalSDKWorker.js'),
+    serviceWorkerPath: './OneSignalSDKWorker.js',
   }).then(() => {
     setInitialized(true);
     OneSignalReact.showSlidedownPrompt().then(() => {
