@@ -9,11 +9,10 @@ const Homepage: NextPage = () => {
     appId: 'c89716aa-7ed9-4402-83ba-7ff80bca219a',
     serviceWorkerPath: '/OneSignalSDKWorker.js',
     autoResubscribe: true,
-  }).then(() => {
-    setInitialized(true);
-    OneSignalReact.showSlidedownPrompt().then(() => {
-      console.log('Success');
-    });
+  }).then(async () => {
+    const status = await OneSignalReact.getNotificationPermission()
+    
+    console.log(status)
   });
 
   return (
