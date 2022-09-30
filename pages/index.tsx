@@ -23,7 +23,7 @@ const Homepage: NextPage = () => {
       {initialized ? (
         <p>Initialized. You are subscribed and can receive notifications.</p>
       ) : (
-        <p>Not initialized yet. You can't receive notifications.</p>
+        <p>Not initialized yet. You can&apos;t receive notifications.</p>
       )}
     </div>
   );
