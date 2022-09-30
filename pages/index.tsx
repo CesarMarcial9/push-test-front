@@ -1,12 +1,25 @@
-import { NextPage } from 'next'
-import React from 'react'
+import { NextPage } from 'next';
+import React, { useState } from 'react';
+import OneSignalReact from 'react-onesignal';
 
 const Homepage: NextPage = () => {
-  return (
-    <div className='flex items-center justify-center min-h-screen text-white bg-zinc-900'>
-      <h1 className='text-5xl font-medium'>Suma push notifs testing</h1>
-    </div>
-  )
-}
+  const [initialized, setInitialized] = useState(false);
+  OneSignalReact.init({ appId: `${process.env.NEXT_PUBLIC_APP_ID}`, serviceWorkerPath: "OneSignalSDKWorker.js" }).then(
+    () => {
+      setInitialized(true);
+      OneSignalReact.showSlidedownPrompt().then(() => {
+        console.log('Success');
+      });
+    }
+  );
 
-export default Homepage
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen text-white bg-zinc-900">
+      <h1 className="text-5xl font-medium">Suma push notifs testing</h1>
+
+      {initialized ? <p>Initialized.</p> : <p>Not initialized yet.</p>}
+    </div>
+  );
+};
+
+export default Homepage;
