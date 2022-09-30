@@ -4,7 +4,7 @@ import OneSignalReact from 'react-onesignal';
 
 const Homepage: NextPage = () => {
   const [initialized, setInitialized] = useState(false);
-  OneSignalReact.init({ appId: `${process.env.NEXT_PUBLIC_APP_ID}`, serviceWorkerPath: "OneSignalSDKWorker.js" }).then(
+  OneSignalReact.init({ appId: "c89716aa-7ed9-4402-83ba-7ff80bca219a", serviceWorkerPath: "OneSignalSDKWorker.js" }).then(
     () => {
       setInitialized(true);
       OneSignalReact.showSlidedownPrompt().then(() => {
