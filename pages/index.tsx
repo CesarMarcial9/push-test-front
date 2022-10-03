@@ -7,7 +7,7 @@ const Homepage: NextPage = () => {
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false)
 
   OneSignalReact.init({
-    appId: 'c89716aa-7ed9-4402-83ba-7ff80bca219a',
+    appId: '781727fc-d36e-4468-9c98-40478ae77364',
     serviceWorkerPath: '/OneSignalSDKWorker.js',
     autoResubscribe: true,
   }).then(async () => {
