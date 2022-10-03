@@ -1,5 +1,4 @@
 import { NextPage } from 'next';
-import path from 'path';
 import React, { useState } from 'react';
 import OneSignalReact from 'react-onesignal';
 
