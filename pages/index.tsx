@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import OneSignalReact from 'react-onesignal';
 
 const Homepage: NextPage = () => {
-  const [initialized, setInitialized] = useState(false);
+  const [initialized, setInitialized] = useState<boolean>(false);
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false)
 
   OneSignalReact.init({
@@ -28,6 +28,8 @@ const Homepage: NextPage = () => {
       setIsSubscribed(false)
     }
   });
+
+  
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-3 p-4 text-center text-white bg-gradient from-zinc-700 to-zinc-900 bg-zinc-900">
