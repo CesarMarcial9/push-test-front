@@ -9,10 +9,17 @@ const Homepage: NextPage = () => {
   OneSignalReact.init({
     appId: '781727fc-d36e-4468-9c98-40478ae77364',
     serviceWorkerPath: '/OneSignalSDKWorker.js',
+    welcomeNotification: {
+      title: 'Welcome to Suma Wealth!',
+      messaage: "It's great to see you here. Leave your finances to us!",
+    },
+    persistNotification: false,
     autoResubscribe: true,
   }).then(async () => {
     setInitialized(true)
 
+    await OneSignalReact.showNativePrompt()
+    
     const status = await OneSignalReact.getNotificationPermission()
     
     // maybe should be a switch case...
