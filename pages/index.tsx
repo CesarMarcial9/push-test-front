@@ -5,7 +5,7 @@ import OneSignalReact from 'react-onesignal';
 const Homepage: NextPage = () => {
   const [initialized, setInitialized] = useState<boolean>(false);
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
-
+  
   useEffect(() => {
     OneSignalReact.init({
       appId: process.env.NEXT_PUBLIC_APP_ID || '',
@@ -20,12 +20,12 @@ const Homepage: NextPage = () => {
       setInitialized(true);
 
       try {
-        await OneSignalReact.setExternalUserId('abc-1234-abcd');
         const status = await OneSignalReact.getNotificationPermission();
 
         switch (status) {
           case 'default':
             OneSignalReact.showSlidedownPrompt({ force: true });
+            await OneSignalReact.setExternalUserId('abc-1234-abcd');
             break;
 
           case 'granted':
