@@ -26,7 +26,7 @@ const Homepage: NextPage = () => {
 
         switch (status) {
           case 'default':
-            OneSignalReact.showSlidedownPrompt();
+            OneSignalReact.showSlidedownPrompt({force: true});
             break;
 
           case 'granted':
