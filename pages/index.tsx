@@ -18,9 +18,9 @@ const Homepage: NextPage = () => {
       autoResubscribe: true,
     }).then(async () => {
       setInitialized(true);
-
+      OneSignalReact.setExternalUserId("abc-123-abcd").then(() => console.log("success")).catch(err => console.error(err))
       try {
-        await OneSignalReact.setExternalUserId("abc-123-abcd").then(() => console.log("success")).catch(err => console.error(err))
+        
 
         const status = await OneSignalReact.getNotificationPermission();
 
