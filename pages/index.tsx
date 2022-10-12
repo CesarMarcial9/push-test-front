@@ -7,7 +7,7 @@ const Homepage: NextPage = () => {
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
   
   useEffect(() => {
-    OneSignalReact.setExternalUserId("abc-123-abcd").then(() => console.log("success")).catch(err => console.error(err))
+    
     
     OneSignalReact.init({
       appId: '781727fc-d36e-4468-9c98-40478ae77364',
@@ -22,14 +22,13 @@ const Homepage: NextPage = () => {
       setInitialized(true);
       
       try {
-        
+        await OneSignalReact.setExternalUserId("abc-123-abcd").then(() => console.log("success")).catch(err => console.error(err))
 
         const status = await OneSignalReact.getNotificationPermission();
 
         switch (status) {
           case 'default':
             OneSignalReact.showSlidedownPrompt({force: true});
-            
             break;
 
           case 'granted':
