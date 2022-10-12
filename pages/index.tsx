@@ -7,8 +7,8 @@ const Homepage: NextPage = () => {
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
   
   useEffect(() => {
-    
-    
+    OneSignalReact.setExternalUserId("abc-123-abcd").then(() => console.log("success")).catch(err => console.error(err))
+
     OneSignalReact.init({
       appId: '781727fc-d36e-4468-9c98-40478ae77364',
       serviceWorkerPath: '/OneSignalSDKWorker.js',
@@ -28,9 +28,6 @@ const Homepage: NextPage = () => {
         switch (status) {
           case 'default':
             OneSignalReact.showSlidedownPrompt({force: true});
-            await OneSignalReact.setExternalUserId("abc-123-abcd").then(() => console.log("success")).catch(err => console.error(err))
-
-
             break;
 
           case 'granted':
@@ -50,7 +47,7 @@ const Homepage: NextPage = () => {
     }).catch((err) => {
       console.error(err)
     })
-  }, []);
+  }, [isSubscribed]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-3 p-4 text-center text-white bg-gradient from-zinc-700 to-zinc-900 bg-zinc-900">
