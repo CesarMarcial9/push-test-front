@@ -20,7 +20,7 @@ const Homepage: NextPage = () => {
       setInitialized(true);
 
       try {
-        await OneSignalReact.setExternalUserId("abc-123-abcd").then((res) => console.log(res)).catch(err => console.error(err))
+        await OneSignalReact.setExternalUserId("abc-123-abcd").then((res) => console.log("success", res)).catch(err => console.error(err))
         const status = await OneSignalReact.getNotificationPermission();
 
         switch (status) {
