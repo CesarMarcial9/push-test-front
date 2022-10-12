@@ -9,7 +9,7 @@ const Homepage: NextPage = () => {
   useEffect(() => {
     OneSignalReact.init({
       appId: '781727fc-d36e-4468-9c98-40478ae77364',
-      serviceWorkerPath: '/OneSignalSDKWorker.js',
+      serviceWorkerPath: '../OneSignalSDKWorker.js',
       welcomeNotification: {
         title: 'Welcome to Suma Wealth!',
         messaage: "It's great to see you here. Leave your finances to us!",
@@ -20,12 +20,13 @@ const Homepage: NextPage = () => {
       setInitialized(true);
 
       try {
-        await OneSignalReact.setExternalUserId("abc-123-abcd").then((res) => console.log("success", res)).catch(err => console.error(err))
+        await OneSignalReact.setExternalUserId("abc-123-abcd").then(() => console.log("success")).catch(err => console.error(err))
+
         const status = await OneSignalReact.getNotificationPermission();
 
         switch (status) {
           case 'default':
-            OneSignalReact.showSlidedownPrompt({ force: true });
+            OneSignalReact.showSlidedownPrompt();
             break;
 
           case 'granted':
