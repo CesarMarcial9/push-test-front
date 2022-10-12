@@ -2,12 +2,13 @@ import { NextPage } from 'next';
 import React, { useEffect, useState } from 'react';
 import OneSignalReact from 'react-onesignal';
 
+
 const Homepage: NextPage = () => {
   const [initialized, setInitialized] = useState<boolean>(false);
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
   
   useEffect(() => {
-    OneSignalReact.setExternalUserId("abc-123-abcd").then(() => console.log("success")).catch(err => console.error(err))
+    
 
     OneSignalReact.init({
       appId: '781727fc-d36e-4468-9c98-40478ae77364',
@@ -20,6 +21,15 @@ const Homepage: NextPage = () => {
       autoResubscribe: true,
     }).then(async () => {
       setInitialized(true);
+      
+      OneSignalReact.isPushNotificationsEnabled((isEnabled) => {
+        if (isEnabled) {
+          console.log("Push notifications are enabled!");
+          OneSignalReact.setExternalUserId("abc-123-abcd")
+        } else {
+          console.log("Push notifications are not enabled yet.");
+        }
+      })
       
       try {
 
@@ -47,7 +57,7 @@ const Homepage: NextPage = () => {
     }).catch((err) => {
       console.error(err)
     })
-  }, [isSubscribed]);
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-3 p-4 text-center text-white bg-gradient from-zinc-700 to-zinc-900 bg-zinc-900">
