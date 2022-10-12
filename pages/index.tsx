@@ -20,12 +20,12 @@ const Homepage: NextPage = () => {
       setInitialized(true);
 
       try {
+        await OneSignalReact.setExternalUserId("abc-123-abcd").then((res) => console.log(res)).catch(err => console.error(err))
         const status = await OneSignalReact.getNotificationPermission();
 
         switch (status) {
           case 'default':
             OneSignalReact.showSlidedownPrompt({ force: true });
-            await OneSignalReact.setExternalUserId('abc-1234-abcd');
             break;
 
           case 'granted':
