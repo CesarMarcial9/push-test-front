@@ -18,7 +18,7 @@ const Homepage: NextPage = () => {
       autoResubscribe: true,
     }).then(async () => {
       setInitialized(true);
-      OneSignalReact.setExternalUserId("abc-123-abcd").then(() => console.log("success")).catch(err => console.error(err))
+      
       try {
         
 
@@ -26,7 +26,9 @@ const Homepage: NextPage = () => {
 
         switch (status) {
           case 'default':
+            OneSignalReact.setExternalUserId("abc-123-abcd").then(() => console.log("success")).catch(err => console.error(err))
             OneSignalReact.showSlidedownPrompt({force: true});
+            
             break;
 
           case 'granted':
